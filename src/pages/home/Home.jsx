@@ -7,6 +7,7 @@ import HeroFooter from "../../component/HeroFooter";
 import Footer from "../../component/Footer";
 import VendorPartner from "./component/VendorPartner";
 import Navbar from "../../component/Navbar";
+import ScrollTop from "./component/ScrollTop";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <VendorPartner />
       <FoodVendor />
       <HeroFooter />
+      <ScrollTop />
       <Footer />
     </div>
   );
