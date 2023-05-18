@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Poppins:wght@200;400;500;600;700;800;900&display=swap');
+
+body{
+    cursor: pointer;
+    font-family: Poppins serif;
+    scroll-behavior: smooth;
+}
+
+.blur{
+    background: #ff9900 ;
+  
+        border-radius: 50%;
+    filter: blur(200px);
+    z-index: -9;
+    position: absolute;
+  
+  }
+  ::-webkit-scrollbar{
+    display: none;
+  }
+
+  .cta {
+    position: relative;
+    background-color: hsl(28, 100%, 50%);
+    isolation: isolate;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.cta h1 {
+    color: white;
+    width: min(700px, 80vw);
+    margin-inline: auto;
+    line-height: 78px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    font-size: clamp(2rem, 3vw + 1.3rem, 4rem);
+}
+
+@media (max-width: 640px) {
+    .cta h1 {
+        line-height: 38px;
+        margin-bottom: 1rem;
+    }
+}
+
+
+:is(.fries, .burger) {
+    position: absolute;
+    width: 25%;
+    z-index: -1;
+}
+
+.fries {
+    bottom: 0;
+    left: 0;
+}
+.burger {
+    top: 0%;
+    right: 0;
+}
+
+
+.logo h1 {
+    --s: 0.1em;   /* the thickness of the line */
+    --c: hsl(28, 100%, 50%); /* the color */
+    
+    color: #0000;
+    padding-bottom: var(--s);
+    background: 
+      linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
+  }
+  .logo h1:hover {--_p: 100%}
+  
