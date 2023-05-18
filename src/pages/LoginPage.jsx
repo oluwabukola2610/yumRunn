@@ -30,7 +30,7 @@ const LoginPage = () => {
           </div>
           <form
             onSubmit={() => navigate("/food")}
-            className="w-full sm:max-w-md px-6 space-y-4 md:space-y-6 bg-gray-300 bg-opacity-0 bg-clip-padding backdrop-filter backdrop-blur-sm text-white z-50 py-4  rounded-lg"
+            className="w-full sm:max-w-md px-6 space-y-4 md:space-y-6 bg-gray-300 bg-opacity-30 bg-clip-padding backdrop-filter backdrop-blur-sm text-white z-50 py-4  rounded-lg"
           >
             <h1 className="w-full flex justify-center text-white text-bold text-2xl mb:2 md:mb-5">
               Sign in to your account
@@ -86,7 +86,7 @@ const LoginPage = () => {
                     aria-describedby="remember"
                     type="checkbox"
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50  "
-                    required=""
+                    required={true}
                   />
                 </div>
                 <div className="ml-3 text-sm">
