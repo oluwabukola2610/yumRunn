@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { data } from "../../data/Foodata";
 import FoodNav from "./FoodNav";
 import { BsCartFill } from "react-icons/bs";
+import HeroFooter from "../../component/HeroFooter";
+import Testimonial from "./Testimonial";
 
 const Food = () => {
   const [foods, setFood] = useState(data);
@@ -67,12 +69,11 @@ const Food = () => {
                 alt=""
                 className="h-[200px] object-cover rounded-t-lg w-full"
               />
-              <p className="font-bold text-center pt-3">{items.name}</p>
-
-              <div className="flex py-4 px-4 justify-between">
-                <span className="bg-orange-600 text-white p-1 rounded-full">
+              <p className="font-bold text-center pt-3 text-xl text-deeperO">{items.name}</p>
+              <div className="flex py-2 justify-center space-x-12">
+                <p className="bg-orange-600 text-white p-1 rounded-2xl">
                   {items.price}
-                </span>
+                </p>
                 <BsCartFill size={25} className="mr-2" />
 
               </div>
@@ -80,6 +81,8 @@ const Food = () => {
           ))}
         </div>
       </div>
+      <Testimonial />
+      <HeroFooter />
     </>
   );
 };
