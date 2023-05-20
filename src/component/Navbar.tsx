@@ -76,7 +76,7 @@ const Navbar = () => {
             {renderIcon(2)}
             <span className="transition-all duration-300">Login</span>
           </Link>
-          <Link to="auth/customer/login">
+          <Link to="auth/customer/signup">
             <button className="px-4 py-2 items-center flex text-white bg-deeperO rounded-md hover:bg-deepOrange">
               Create Account
             </button>

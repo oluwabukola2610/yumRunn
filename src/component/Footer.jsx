@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const footer = () => {
   return (
     <div className="mx-auto max-w-[1640px] w-full h-[50vh]">
-      <footer className="flex flex-col md:flex-row justify-center gap-8 md:gap-20 items-center px-6 py-14 ">
+      <footer className="flex flex-wrap justify-center gap-8 md:gap-20 items-center px-6 py-14 ">
       <Link to='/' className="logo">
         <h1 className="text-4xl md:text-5xl ">yumRun</h1>
       </Link>
