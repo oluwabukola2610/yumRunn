@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BiLogInCircle } from "react-icons/bi";
 import { BsClipboard2DataFill } from "react-icons/bs";
 import { HiMail,HiOutlineMenuAlt3 } from "react-icons/hi";
 import {GrFormClose} from 'react-icons/gr'
@@ -24,7 +23,7 @@ const Navbar = () => {
   };
 
   const renderIcon = (index: number) => {
-    const icons = [BsClipboard2DataFill, HiMail, BiLogInCircle]; // Add more icons here if needed
+    const icons = [BsClipboard2DataFill, HiMail]; // Add more icons here if needed
     const Icon = icons[index];
 
     if (hoverStates[index]) {
@@ -67,15 +66,6 @@ const Navbar = () => {
               Contact us
             </span>
           </a>
-          <Link
-            to="auth/customer/login"
-            className="flex items-center justify-end w-[5rem] "
-            onMouseEnter={() => handleMouseEnter(2)}
-            onMouseLeave={() => handleMouseLeave(2)}
-          >
-            {renderIcon(2)}
-            <span className="transition-all duration-300">Login</span>
-          </Link>
           <Link to="auth/customer/signup">
             <button className="px-4 py-2 items-center flex text-white bg-deeperO rounded-md hover:bg-deepOrange">
               Create Account
@@ -120,20 +110,12 @@ const Navbar = () => {
            Contact us
          </span>
        </a>
-       <Link
-         to="auth/customer/login"
-         className="flex items-center justify-end w-[5rem] hover:text-deeperO "
-         onMouseEnter={() => handleMouseEnter(2)}
-         onMouseLeave={() => handleMouseLeave(2)}
-       >
-         {renderIcon(2)}
-         <span className="transition-all duration-300">Login</span>
-       </Link>
-       <Link to="auth/customer/signup" className="">
-         <button className="px-4 py-2 items-center flex hover:text-white  bg-deeperO rounded-md hover:bg-deepOrange ">
-           Create Account
-         </button>
-       </Link>
+     
+       <Link to="auth/customer/signup">
+            <button className="px-4 py-2 items-center flex text-white bg-deeperO rounded-md hover:bg-deepOrange">
+              Create Account
+            </button>
+          </Link>
      </motion.div>
      )}
     </div>

@@ -1,28 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GiShoppingCart } from "react-icons/gi";
-import{BsCartCheck} from 'react-icons/bs'
+import { BsCartCheck } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
+import { BiUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const FoodNav = () => {
   const [toggleNav, settoggleNav] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem("user");
+    if (storedUserInfo) {
+      setUserInfo(JSON.parse(storedUserInfo));
+    }
+  }, []);
   return (
-    <div className="max-w-[1640px] flex justify-between mx-auto items-center py-4 px-8">
+    <div className="max-w-[1640px] flex justify-between mx-auto items-center py-4 md:px-8 px-3">
       {/* {letf side} */}
-
-      <Link to="/" className="logo">
-        <h1 className="text-2xl md:text-4xl font-semibold">yumRun</h1>
-      </Link>
+      <div className="flex space-x-3 items-center">
+        <Link to="/" className="logo">
+          <h1 className="text-2xl md:text-4xl font-semibold">yumRun</h1>
+        </Link>
+       <div className="flex gap-1 items-center">
+       <BiUser size={20} className=""/>
+        {userInfo && (
+          <p className="textt-xs md:text-xl ">Welcome, {userInfo.name}!</p>
+        )}
+       </div>
+      </div>
 
       {/* cartbuttom */}
       <div onClick={() => settoggleNav(!toggleNav)}>
-        <BsCartCheck size={25} className="mr-2" />
+        <BsCartCheck size={25} className="mr-2 items-center" />
       </div>
       {/* mobilemenu */}
       {/* overlay */}
       {toggleNav && (
-        <div className="bg-black/60 w-full fixed top-0 left-0 z-10 h-screen" onClick={()=>settoggleNav(!toggleNav)}></div>
+        <div
+          className="bg-black/60 w-full fixed top-0 left-0 z-10 h-screen"
+          onClick={() => settoggleNav(!toggleNav)}
+        ></div>
       )}
       {/* sidemenu */}
       <div
@@ -46,10 +64,13 @@ const FoodNav = () => {
             className="flex justify-center items-center m-6"
           />
           <div className="text-center">
-          <p className="text-xl">Your cart is empty!</p>
-          <p onClick={()=>settoggleNav(!toggleNav)} className="text-deeperO text-md">
-            Order now
-          </p>
+            <p className="text-xl">Your cart is empty!</p>
+            <p
+              onClick={() => settoggleNav(!toggleNav)}
+              className="text-deeperO text-md"
+            >
+              Order now
+            </p>
           </div>
         </div>
       </div>

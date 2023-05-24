@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const LoginPage = () => {
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordInput, setPasswordInput] = useState("");
-  const handlePasswordChange = (evnt) => {
-    setPasswordInput(evnt.target.value);
-  };
+
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -15,10 +13,56 @@ const LoginPage = () => {
     }
     setPasswordType("password");
   };
-
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    name: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform form validation
+    if (!user.email || !user.password || !user.name) {
+      toast.error("Please fill in all the fields.");
+      return;
+    }
+    if (user.password.length < 6) {
+      toast.error("Password should be at least 6 characters!");
+      return; 
+    }
+
+    const isLogged = true;
+
+    if (isLogged) {
+      localStorage.setItem("user", JSON.stringify(user));
+      toast.success("Successfully logged in!");
+      setTimeout(() => {
+        navigate("/food");
+      }, 2000);
+    } else {
+      toast.error("Login failed!");
+    }
+  };
+
   return (
     <section className="mx-auto max-w-[1640px]">
+      <ToastContainer
+        position="top-center"
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        style={{ top: "10%", transform: "translateY(-50%)" }}
+      />
       <div className="max-h-[600px] relative ">
         <div className="w-full h-[100vh] px-3 sm:px-5 flex items-center justify-center absolute">
           <div className="absolute left-5 top-6 md:left-20 md:top-10 mb-6">
@@ -29,7 +73,7 @@ const LoginPage = () => {
             </Link>
           </div>
           <form
-            onSubmit={() => navigate("/food")}
+            onSubmit={handleSubmit}
             className="w-full sm:max-w-md px-6 space-y-4 md:space-y-6 bg-gray-400 bg-opacity-30 bg-clip-padding backdrop-filter backdrop-blur-sm text-white z-50 py-4  rounded-lg"
           >
             <h1 className="w-full flex justify-center text-white font-bold text-bold text-2xl mb:2 md:mb-5">
@@ -37,7 +81,24 @@ const LoginPage = () => {
             </h1>
             <div className="mb-6">
               <label
-                for="email"
+                htmlFor="name"
+                className="block mb-2 text-sm font-medium text-white"
+              >
+                Name
+              </label>
+              <input
+                type="name"
+                name="name"
+                id="name"
+                value={user.name}
+                className=" block w-full p-1.5 md:p-2.5 bg-gray-300 rounded-lg  placeholder-gray-600 text-gray-900 focus:outline-none"
+                placeholder="Marty May"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-white"
               >
                 Your email
@@ -46,28 +107,29 @@ const LoginPage = () => {
                 type="email"
                 name="email"
                 id="email"
+                value={user.email}
                 className=" block w-full p-1.5 md:p-2.5 bg-gray-300 rounded-lg  placeholder-gray-600 text-gray-900 focus:outline-none"
                 placeholder="name@company.com"
-                required={true}
+                onChange={handleInputChange}
               />
             </div>
             <div className="mb-6">
               <label
-                for="password"
+                htmlFor="password"
                 className="block mb-2 text-sm font-medium text-white"
               >
                 Your password
               </label>
               <div className="flex items-center justify-between bg-gray-300 rounded-lg border border-gray-400">
                 <input
-                  onChange={handlePasswordChange}
+                  onChange={handleInputChange}
                   type={passwordType}
-                  name={passwordType}
-                  value={passwordInput}
+                  name='password'
+                  value={user.password}
                   id="password"
                   placeholder="••••••••"
                   className=" block w-full p-1.5 md:p-2.5 bg-gray-300 rounded-lg  placeholder-gray-600 text-gray-900 focus:outline-none"
-                  required={true}
+                  // required={true}
                 />
                 <div onClick={togglePassword} className="px-4 text-black">
                   {passwordType === "password" ? (
@@ -86,7 +148,6 @@ const LoginPage = () => {
                     aria-describedby="remember"
                     type="checkbox"
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50  "
-                    required={true}
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -110,8 +171,8 @@ const LoginPage = () => {
             </button>
             <p className="text-sm font-light text-gray-300">
               Don’t have an account yet?{" "}
-              <Link to='/auth/customer/signup'
-
+              <Link
+                to="/auth/customer/signup"
                 className="font-medium text-primary hover:underline text-deeperO"
               >
                 Sign up

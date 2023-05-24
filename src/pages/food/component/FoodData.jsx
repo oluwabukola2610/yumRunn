@@ -4,20 +4,20 @@ import { BiSearchAlt } from "react-icons/bi";
 
 const FoodData = () => {
   const [foods, setFood] = useState(data);
-  const [searchFood, setSearchFood] = useState('');
+  const [searchFood, setSearchFood] = useState("");
   const filterCategory = (category) => {
     setFood(data.filter((item) => item.category === category));
   };
   const handleInput = () => {
-    if (searchFood === '') return;
-    
-    const search = data.filter(
-      (item) => item.name.toLowerCase().includes(searchFood.toLowerCase())
+    if (searchFood === "") return;
+
+    const search = data.filter((item) =>
+      item.name.toLowerCase().includes(searchFood.toLowerCase())
     );
     setFood(search);
   };
-  
-  console.log(searchFood)
+
+
   return (
     <div className="max-w-[1640px] mx-auto px-4 py-10">
       <div className="flex flex-col space-y-7">
@@ -25,8 +25,8 @@ const FoodData = () => {
           Top Rated Menu Items
         </h1>
         {/* serchinput */}
-        <div className="bg-gray-100 rounded-full w-[150px] md:w-[300px] px-2 flex items-center justify-center">
-          <BiSearchAlt size={30} onClick={handleInput}/>
+        <div className="bg-gray-100 rounded-full w-[250px] md:w-[300px] px-2 flex items-center justify-center">
+          <BiSearchAlt size={30} onClick={handleInput} />
           <input
             type="text"
             name={searchFood}
@@ -93,7 +93,10 @@ const FoodData = () => {
                 <p className="bg-orange-600 text-white p-1 rounded-2xl">
                   {items.price}
                 </p>
-                <button className="px-3 py-1 border bg-white/60 hover:border-deeperO rounded-md"> Add to cart</button>
+                <button className="px-3 py-1 border bg-white/60 hover:border-deeperO rounded-md">
+                  {" "}
+                  Add to cart
+                </button>
               </div>
             </div>
           ))}
