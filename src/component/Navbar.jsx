@@ -7,22 +7,22 @@ import {motion} from 'framer-motion'
 import { fadeIn } from "../data/animation";
 
 const Navbar = () => {
-  const [hoverStates, setHoverStates] = useState<any>([]);
-  const [showNav,setShowNav] = useState<boolean>(false)
+  const [hoverStates, setHoverStates] = useState([]);
+  const [showNav,setShowNav] = useState(false)
 
-  const handleMouseEnter = (index: number) => {
+  const handleMouseEnter = (index) => {
     const newHoverStates = [...hoverStates];
     newHoverStates[index] = true;
     setHoverStates(newHoverStates);
   };
 
-  const handleMouseLeave = (index: number) => {
+  const handleMouseLeave = (index) => {
     const newHoverStates = [...hoverStates];
     newHoverStates[index] = false;
     setHoverStates(newHoverStates);
   };
 
-  const renderIcon = (index: number) => {
+  const renderIcon = (index) => {
     const icons = [BsClipboard2DataFill, HiMail]; // Add more icons here if needed
     const Icon = icons[index];
 
