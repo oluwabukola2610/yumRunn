@@ -45,7 +45,7 @@ const Navbar = () => {
       <nav className="flex items-center justify-between text-zinc-800">
         <div className="hidden md:flex justify-between space-x-8  items-center capitalize font-primary font-bold">
           <Link
-            to="about"
+            to="/about"
             className="flex items-center justify-end w-[6rem]"
             onMouseEnter={() => handleMouseEnter(0)}
             onMouseLeave={() => handleMouseLeave(0)}
@@ -56,7 +56,7 @@ const Navbar = () => {
             </span>
           </Link>
           <a
-            href="mailto:roheemohmudashir@gmail.come"
+            href="mailto:roheemohmudashir@gmail.com"
             className="flex items-center justify-end w-[7rem]"
             onMouseEnter={() => handleMouseEnter(1)}
             onMouseLeave={() => handleMouseLeave(1)}
@@ -66,7 +66,7 @@ const Navbar = () => {
               Contact us
             </span>
           </a>
-          <Link to="auth/customer/signup">
+          <Link to="/auth/customer/signup">
             <button className="px-4 py-2 items-center flex text-white bg-deeperO rounded-md hover:bg-deepOrange">
               Create Account
             </button>
