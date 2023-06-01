@@ -12,7 +12,7 @@ const Cart = () => {
 
   return (
     <div>
-      <h1 className="text-center text-3xl py-3">Your Cart Item</h1>
+      <h1 className="text-center text-3xl py-3 font-secondary font-bold capitalize">Your Cart Item</h1>
       <div className="flex flex-wrap justify-center">
         {data.map((pro) => displayCart[pro.id] > 0 && <CartItem data={pro} />)}
       </div>
@@ -27,14 +27,14 @@ const Cart = () => {
         <div className="my-8 flex justify-center border-t border-gray-100 pt-8">
           <div className="w-screen max-w-lg space-y-4 px-4">
             <dl className="space-y-0.5 text-sm text-gray-700">
-              <div className="flex justify-between">
-                <dt>Subtotal</dt>
-                <dd>$250</dd>
+              <div className="flex justify-between !text-base font-medium">
+                <dt>Discount</dt>
+                <dd className="font-logo font-bold text-md">$5</dd>
               </div>
 
               <div className="flex justify-between !text-base font-medium">
                 <dt>Total</dt>
-                <dd>${Total}</dd>
+                <dd className="font-logo font-bold text-xl">${Total}</dd>
               </div>
             </dl>
 
@@ -55,28 +55,30 @@ const Cart = () => {
                   />
                 </svg>
 
-                <p className="whitespace-nowrap text-xs">2 Discounts Applied</p>
+                <p className="whitespace-nowrap text-xs"> Discounts Applied</p>
               </span>
             </div>
 
-           <div className="flex justify-end gap-5 items-center">
-           <div className="flex justify-end">
-              <Link
-                to="/food"
-                class="block rounded bg-deeperO px-5 py-3 text-sm text-gray-100 transition hover:bg-orange-400"
-              >
-                Shop
-              </Link>
+            <div className="flex justify-end gap-5 items-center py-6 ">
+              <div className="flex justify-end">
+                <Link
+                  to="/food"
+                  class=" font-bold block  bg-deeperO px-5 rounded-lg py-3 text-sm text-gray-100 transition hover:bg-orange-400"
+                >
+                  Go back to Shopping!
+                </Link>
+              </div>
+              <div className="flex justify-end">
+                <Link
+                
+                  to="/"
+                  class=" rounded-lg font-bold block  bg-deeperO px-5 py-3 text-sm text-gray-100 transition hover:bg-orange-400"
+                >
+                 
+                  Checkout
+                </Link>
+              </div>
             </div>
-            <div className="flex justify-end">
-              <Link
-                to="/"
-                class="block rounded bg-deeperO px-5 py-3 text-sm text-gray-100 transition hover:bg-orange-400"
-              >
-                Checkout
-              </Link>
-            </div>
-           </div>
           </div>
         </div>
       )}

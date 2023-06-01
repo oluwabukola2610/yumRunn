@@ -18,10 +18,10 @@ const LoginPage = () => {
         style={{ top: "10%", transform: "translateY(-50%)" }}
       />
       <div className="max-h-[600px] relative ">
-        <div className="w-full h-[100vh] px-3 sm:px-5 flex items-center justify-center absolute">
+        <div className="w-full h-[100vh] px-3 sm:px-5 flex items-center justify-center absolute bg-black/40">
           <div className="absolute left-5 top-6 md:left-20 md:top-10 mb-6">
             <Link to="/" className="logo">
-              <h1 className="text-3xl md:text-4xl font-semibold !text-deeperO">
+              <h1 className="text-3xl md:text-4xl font-semibold font-logo !text-deeperO">
                 yumRun
               </h1>
             </Link>
@@ -30,7 +30,7 @@ const LoginPage = () => {
             onSubmit={handleSubmit}
             className="w-full sm:max-w-md px-6 space-y-4 md:space-y-6 bg-gray-400 bg-opacity-30 bg-clip-padding backdrop-filter backdrop-blur-sm text-white z-50 py-4  rounded-lg"
           >
-            <h1 className="w-full flex justify-center text-white font-bold text-bold text-2xl mb:2 md:mb-5">
+            <h1 className="w-full flex justify-center text-white font-bold  font-secondary text-bold text-2xl mb:2 md:mb-5">
               Log in to your account
             </h1>
             <div className="mb-6">
@@ -119,17 +119,17 @@ const LoginPage = () => {
             </div>
             <button
               type="submit"
-              className="w-full text-white bg-deeperO hover:bg-orange-400 focus:ring-4 focus:outline-none  font-medium rounded-xl text-md px-5 py-2.5 text-center"
+              className="w-full text-white bg-deeperO hover:bg-orange-400  focus:outline-none  font-medium rounded-xl text-md px-5 py-2.5 text-center"
             >
               Sign in
             </button>
             <p className="text-sm font-light text-gray-300">
-              Don’t have an account yet?{" "}
+             Not registered? create account
               <Link
                 to="/auth/customer/signup"
                 className="font-medium text-primary hover:underline text-deeperO"
               >
-                Log in
+               Sign up
               </Link>
             </p>
           </form>

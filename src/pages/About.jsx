@@ -8,16 +8,16 @@ const About = () => {
     <>
       <Navbar />
       <header className="mx-auto max-w-[1640px] ">
-        <div className="max-h-[500px] relative">
+        <div className="max-h-[600px] relative">
           {/* overlay */}
-          <div className="absolute w-full h-full max-h-[300px] text-gray-200 bg-black/25 flex flex-col justify-center">
-            <p className="px-4 text-4xl sm:text-5xl md:tex-6xl lg:text-7xl font-bold max-w-xl">
+          <div className="absolute w-full h-full max-h-[500px] text-gray-200 bg-black/25 flex flex-col justify-center">
+            <p className="px-4 text-4xl sm:text-5xl md:tex-6xl lg:text-7xl font-bold max-w-xl font-secondary">
               Order your <span className="text-orange-500"> favourite </span>{" "}
               meals. We'll deliver.
             </p>
           </div>
           <img
-            className="  w-full max-h-[300px] object-cover"
+            className="  w-full max-h-[400px] object-cover"
             alt=""
             src="https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZvb2R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60"
           />
@@ -52,7 +52,6 @@ const About = () => {
         </div>
       </header>
       <HeroFooter />
-      <Footer />
     </>
   );
 };

@@ -37,15 +37,40 @@ const FoodContext = ({ children }) => {
   const removeCart = (Id) => {
     setdisplayCart((prev) => ({ ...prev, [Id]: prev[Id] - 1 }));
   };
+  // const calculateTotal = () => {
+  //   let total = 0;
+  //   Object.keys(displayCart).forEach((id) => {
+  //     const quantity = displayCart[id];
+  //     const product = data.find((pro) => pro.id === parseInt(id));
+  //     if (product) {
+  //       total += quantity * product.price;
+  //     }
+  //   });
+  //   return total.toFixed(2);
+  // };
+  
   const calculateTotal = () => {
     let total = 0;
-    data.forEach((pro) => {
-      total += displayCart[pro.id] * pro.price;
+    Object.keys(displayCart).forEach((id) => {
+      const quantity = displayCart[id];
+      const product = data.find((pro) => pro.id === parseInt(id));
+      if (product) {
+        total += quantity * product.price;
+      }
     });
-    return total.toFixed(2);
+  
+    // Apply discount (example: 10% discount)
+    const discountPercentage = 5; // Set your desired discount percentage
+    const discount = (total * discountPercentage) / 100;
+    const discountedTotal = total - discount;
+  
+    return discountedTotal.toFixed(2);
   };
+  
+  
 
-  const Total = calculateTotal();
+
+  
   const deleteFromCart = (id) => {
     setdisplayCart((prev) => {
       const updatedCart = { ...prev };
@@ -63,7 +88,7 @@ const FoodContext = ({ children }) => {
     foods,
     searchFood,
     setFood,
-    Total,
+    Total:calculateTotal(),
     removeCart,
     addToCart,
     displayCart,

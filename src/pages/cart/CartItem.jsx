@@ -49,18 +49,18 @@ const CartItem = ({ data }) => {
 
                     <div className="">
                       <button
-                        className="border rounded-xl font-extrabold bg-slate-50  px-4"
+                        className="border rounded-xl font-extrabold bg-slate-50  px-2"
                         onClick={handleAddToCart}
                       >
                         +
                       </button>
                       <input
                         type="number"
-                        className="w-14 mx-5 border border-black text-center"
+                        className="w-14 mx-3 border border-black text-center"
                         value={displayCart[data.id]}
                       />
                       <button
-                        className="border rounded-xl font-extrabold bg-slate-50  px-4"
+                        className="border rounded-xl font-extrabold bg-slate-50  px-2"
                         onClick={handleRemoveFromCart}
                       >
                         -

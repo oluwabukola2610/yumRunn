@@ -32,6 +32,13 @@ const useRegister = (success) => {
         toast.error("Please fill in all the fields.");
         return;
       }
+    //   <button
+    //   onClick={() => addToCart(items.id)}
+    //   className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-deeperO rounded hover:bg-orange-400 focus:outline-none"
+    // >
+    //   Add to cart {''}
+    //   {displayCart[items.id] > 0 && <>({displayCart[items.id]})</>}
+    // </button>
       if (user.password.length < 6) {
         toast.error("Password should be at least 6 characters!");
         return; 

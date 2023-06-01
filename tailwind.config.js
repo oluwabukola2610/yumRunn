@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: "Cabin",
-        secondary: "Poppins",
+        primary: "Lato",
+        secondary: "Roboto Slab",
+        logo:'Pacifico'
       },
       colors: {
         accent: "#B809C3",

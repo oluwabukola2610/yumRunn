@@ -8,12 +8,12 @@ const HeroFooter = () => {
   return (
     <footer className="cta h-[90vh] w-full">
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-5xl text-white font-bold ">
+        <h1 className="text-5xl text-white font-bold font-secondary ">
           Together, let’s <br /> keep spreading Happiness.
         </h1>
         <div className="flex flex-col md:flex-row md:justify-center gap-4 items-center">
-          <img src={appstore} alt="" />
-          <img src={playstore} alt="" />
+          <img src={appstore} alt="" className="w-56" />
+          <img src={playstore} alt="" className="w-56" />
         </div>
       </div>
       <img src={fries} alt="" className="fries"/>

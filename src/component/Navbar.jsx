@@ -37,16 +37,16 @@ const Navbar = () => {
   };
 
   return (
-    <div className="mx-w-[1640px] mx-auto py-4 px-4 md:px-8 lg:px-14 flex justify-between items-center bg-[#fff4eb] ">
+    <div className="container mx-auto py-4 px-4 md:px-8 lg:px-20 flex justify-between items-center bg-[#fff4eb] ">
       {/* logo */}
       <Link to='/' className="logo">
-        <h1 className="text-3xl md:text-4xl font-semibold">yumRun</h1>
+        <h1 className="text-3xl md:text-4xl  font-logo">yumRun</h1>
       </Link>
-      <nav className="flex items-center justify-between text-zinc-800">
+      <nav className="flex items-center justify-between text-zinc-800 font-primary">
         <div className="hidden md:flex justify-between space-x-8  items-center capitalize font-primary font-bold">
           <Link
             to="/about"
-            className="flex items-center justify-end w-[6rem]"
+            className="flex items-center justify-end w-[6rem] font-bold"
             onMouseEnter={() => handleMouseEnter(0)}
             onMouseLeave={() => handleMouseLeave(0)}
           >
@@ -57,7 +57,7 @@ const Navbar = () => {
           </Link>
           <a
             href="mailto:roheemohmudashir@gmail.com"
-            className="flex items-center justify-end w-[7rem]"
+            className="flex items-center justify-end w-[7rem] font-bold"
             onMouseEnter={() => handleMouseEnter(1)}
             onMouseLeave={() => handleMouseLeave(1)}
           >
@@ -67,7 +67,7 @@ const Navbar = () => {
             </span>
           </a>
           <Link to="/auth/customer/signup">
-            <button className="px-4 py-2 items-center flex text-white bg-deeperO rounded-md hover:bg-deepOrange">
+            <button className="px-4 py-2 items-center flex text-white bg-deeperO rounded-xl hover:bg-deeperO/80 font-bold">
               Create Account
             </button>
           </Link>
@@ -90,7 +90,7 @@ const Navbar = () => {
         className="absolute top-16 w-full right-0 py-9 space-y-10 items-center text-lg font-semibold flex flex-col shadow-md z-10 bg-[#fff4eb] ">
        <Link
          to="about"
-         className="flex items-center justify-end w-[6rem] hover:text-deeperO"
+         className="flex items-center justify-end w-[6rem] hover:text-deeperO font-bold"
          onMouseEnter={() => handleMouseEnter(0)}
          onMouseLeave={() => handleMouseLeave(0)}
        >
@@ -106,13 +106,13 @@ const Navbar = () => {
          onMouseLeave={() => handleMouseLeave(1)}
        >
          {renderIcon(1)}
-         <span className="transition-all duration-300 ease-in-out ">
+         <span className="transition-all duration-300 ease-in-out font-bold">
            Contact us
          </span>
        </a>
      
        <Link to="auth/customer/signup">
-            <button className="px-4 py-2 items-center flex text-white bg-deeperO rounded-md hover:bg-deepOrange">
+            <button className="px-4 py-2 items-center flex font-bold text-white bg-deeperO rounded-md hover:bg-deeperO/80">
               Create Account
             </button>
           </Link>
