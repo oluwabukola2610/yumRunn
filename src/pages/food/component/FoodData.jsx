@@ -82,7 +82,8 @@ const FoodData = () => {
           {foods.map((items) => (
             <div
               key={items.id}
-              className="relative w-full  overflow-hidden rounded-lg bg-white shadow-md "
+              
+              className=" w-full  overflow-hidden rounded-lg bg-white shadow-md "
             >
               <img
                 className="h-[230px] w-full rounded-t-lg object-cover"
@@ -147,7 +148,8 @@ const FoodData = () => {
                   <span className="text-2xl font-logo font-bold text-slate-700">
                     ${items.price}
                   </span>
-                  <button onClick={()=>addToCart(items.id)} className="flex items-center rounded-xl bg-slate-800 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none">
+                  <button onClick={()=>addToCart(items.id)} style={{ pointerEvents: "auto" }}
+                   className="flex items-center rounded-xl bg-slate-800 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="mr-2 h-6 w-6"

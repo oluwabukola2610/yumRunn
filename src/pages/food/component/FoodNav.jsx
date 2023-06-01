@@ -28,8 +28,8 @@ const FoodNav = () => {
           size={30}
           className="absolute right-2 top-4"
         />
-        <h1 className="text-xl md:text-3xl font-semibold p-4">yumRun</h1>
-        <nav>
+        <h1 className="text-xl md:text-3xl font-logo p-4">yumRun</h1>
+        <nav className="">
           <ul className="flex flex-col p-4 text-gray-500">
             <li className="tex-xl py-4 flex">
               <TbTruckDelivery size={25} className="mr-4" />
@@ -67,7 +67,7 @@ const FoodNav = () => {
         <BiMenuAltLeft size={35} onClick={() => settoggleNav(!toggleNav)} />
         {/* logo */}
         <Link to="/" className="logo">
-          <h1 className="text-xl md:text-2xl font-semibold">yumRun</h1>
+          <h1 className="text-2xl md:text-3xl  font-logo ">yumRun</h1>
         </Link>
        
       </div>
