@@ -1,9 +1,7 @@
 import React, { createContext, useState } from "react";
 import { data } from "../data/Foodata";
 
-
 export const contextProvider = createContext();
-
 
 const getdefault = () => {
   let cart = {};
@@ -12,20 +10,26 @@ const getdefault = () => {
   }
   return cart;
 };
+
 const FoodContext = ({ children }) => {
   // fooddata and search functionality
   const [foods, setFood] = useState(data);
   const [searchFood, setSearchFood] = useState("");
+
   const filterCategory = (category) => {
-    setFood(data.filter((item) => item.category === category));
+    const filtered = data.filter((item) => item.category === category);
+    setFood(filtered);
   };
+
   const handleInput = () => {
     if (searchFood === "") return;
 
     const search = data.filter((item) =>
       item.name.toLowerCase().includes(searchFood.toLowerCase())
     );
+
     setFood(search);
+    setSearchFood("");
   };
 
   // addtocart functionality
@@ -37,18 +41,7 @@ const FoodContext = ({ children }) => {
   const removeCart = (Id) => {
     setdisplayCart((prev) => ({ ...prev, [Id]: prev[Id] - 1 }));
   };
-  // const calculateTotal = () => {
-  //   let total = 0;
-  //   Object.keys(displayCart).forEach((id) => {
-  //     const quantity = displayCart[id];
-  //     const product = data.find((pro) => pro.id === parseInt(id));
-  //     if (product) {
-  //       total += quantity * product.price;
-  //     }
-  //   });
-  //   return total.toFixed(2);
-  // };
-  
+
   const calculateTotal = () => {
     let total = 0;
     Object.keys(displayCart).forEach((id) => {
@@ -57,29 +50,24 @@ const FoodContext = ({ children }) => {
       if (product) {
         total += quantity * product.price;
       }
+                    
     });
-  
+
     // Apply discount (example: 10% discount)
     const discountPercentage = 5; // Set your desired discount percentage
     const discount = (total * discountPercentage) / 100;
     const discountedTotal = total - discount;
-  
+
     return discountedTotal.toFixed(2);
   };
-  
-  
 
-
-  
   const deleteFromCart = (id) => {
     setdisplayCart((prev) => {
-      const updatedCart = { ...prev };
+     const updatedCart = { ...prev };
       delete updatedCart[id];
       return updatedCart;
     });
   };
-
-
 
   const contextValue = {
     handleInput,
@@ -88,11 +76,11 @@ const FoodContext = ({ children }) => {
     foods,
     searchFood,
     setFood,
-    Total:calculateTotal(),
+    Total: calculateTotal(),
     removeCart,
     addToCart,
     displayCart,
-    deleteFromCart
+    deleteFromCart,
   };
   return (
     <contextProvider.Provider value={contextValue}>

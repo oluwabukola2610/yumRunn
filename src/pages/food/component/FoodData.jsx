@@ -25,6 +25,7 @@ const FoodData = () => {
           <div className="bg-gray-100 rounded-full w-[350px] px-4 flex items-center justify-center">
             <input
               type="text"
+              value={searchFood}
               name={searchFood}
               placeholder="Search Foods"
               onChange={(e) => setSearchFood(e.target.value)}
@@ -76,8 +77,8 @@ const FoodData = () => {
             </button>
           </div>
         </div>
-        {/* mapping fod data */}
-
+        {foods.length === 0 && <p className="text-3xl font-extrabold justify-center items-center flex ">Item not found!</p>}
+                {/* mapping fod data */}
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
           {foods.map((items) => (
             <div
