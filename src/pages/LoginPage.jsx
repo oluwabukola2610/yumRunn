@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useRegister from "../hook/useRegister";
+import { contextProvider } from "../context/FoodContext";
+
 const LoginPage = () => {
- const {handleSubmit,handleInputChange,togglePassword,passwordType,user} = useRegister("Successfully logged in!")
+  const { handleInputChange, togglePassword, passwordType, user } =
+    useRegister();
+  const { LoginUser } = useContext(contextProvider);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Perform form validation
+    if (!user.email.trim() || !user.password.trim() || !user.name.trim()) {
+      toast.error("Please fill in all the fields.");
+      return;
+    }
+
+    if (user.password.length < 6) {
+      toast.error("Password should be at least 6 characters!");
+      return;
+    }
+
+    await LoginUser(user.email, user.password);
+    sessionStorage.setItem("user", JSON.stringify(user));
+  };
+
   return (
     <section className="mx-auto max-w-[1640px]">
       <ToastContainer
@@ -78,7 +100,7 @@ const LoginPage = () => {
                 <input
                   onChange={handleInputChange}
                   type={passwordType}
-                  name='password'
+                  name="password"
                   value={user.password}
                   id="password"
                   placeholder="••••••••"
@@ -124,12 +146,12 @@ const LoginPage = () => {
               Sign in
             </button>
             <p className="text-sm font-light text-gray-300">
-             Not registered? create account
+              Not registered? create account
               <Link
                 to="/auth/customer/signup"
                 className="font-medium text-primary hover:underline text-deeperO"
               >
-               Sign up
+                Sign up
               </Link>
             </p>
           </form>

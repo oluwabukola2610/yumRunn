@@ -1,7 +1,5 @@
 import  {useState} from 'react'
-import {  useNavigate } from "react-router-dom";
-import {  toast } from "react-toastify";
-const useRegister = (success) => {
+const useRegister = () => {
     const [passwordType, setPasswordType] = useState("password");
 
     const togglePassword = () => {
@@ -23,34 +21,10 @@ const useRegister = (success) => {
         [name]: value,
       }));
     };
-    const navigate = useNavigate();
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Perform form validation
-      if (!user.email || !user.password || !user.name) {
-        toast.error("Please fill in all the fields.");
-        return;
-      }
-      if (user.password.length < 6) {
-        toast.error("Password should be at least 6 characters!");
-        return; 
-      }
+   
   
-      const isLogged = true;
-  
-      if (isLogged) {
-        localStorage.setItem("user", JSON.stringify(user));
-        toast.success(success);
-        setTimeout(() => {
-          navigate("/food");
-        }, 2000);
-      } else {
-        toast.error("Login failed!");
-      }
-    };
-  
-  return {handleSubmit,handleInputChange,togglePassword,passwordType,user}
+  return {handleInputChange,togglePassword,passwordType,user}
 }
 
 export default useRegister

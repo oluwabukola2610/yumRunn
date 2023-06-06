@@ -1,5 +1,15 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { auth } from "../app/firestore";
+
 import { data } from "../data/Foodata";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const contextProvider = createContext();
 
@@ -10,8 +20,59 @@ const getdefault = () => {
   }
   return cart;
 };
-
 const FoodContext = ({ children }) => {
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState({});
+
+  //authentication
+
+  // register/create account
+  const createUser = async (email, password) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      toast.success("Login successful");
+    } catch (err) {
+      if (err.code === "auth/email-already-in-use") {
+        toast.error("Email already exists");
+      } else {
+        toast.error(err.message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const LoginUser = async (email, password) => {
+    try {
+      // Sign in the user with the provided email and password
+      await signInWithEmailAndPassword(auth, email, password);
+
+      // Retrieve the currently authenticated user
+      const user = auth.currentUser;
+
+      // Check if the user exists and if their email is verified
+      if (user && user.email) {
+        // Authentication successful
+        toast.success("Login successful");
+        navigate("/food");
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+      // Authentication failed (user does not exist or email not verified)
+      toast.error("Invalid email or password");
+    }
+  };
+  const LogOut = () => {
+    return signOut(auth);
+  };
   // fooddata and search functionality
   const [foods, setFood] = useState(data);
   const [searchFood, setSearchFood] = useState("");
@@ -50,7 +111,6 @@ const FoodContext = ({ children }) => {
       if (product) {
         total += quantity * product.price;
       }
-                    
     });
 
     // Apply discount (example: 10% discount)
@@ -63,7 +123,7 @@ const FoodContext = ({ children }) => {
 
   const deleteFromCart = (id) => {
     setdisplayCart((prev) => {
-     const updatedCart = { ...prev };
+      const updatedCart = { ...prev };
       delete updatedCart[id];
       return updatedCart;
     });
@@ -81,6 +141,10 @@ const FoodContext = ({ children }) => {
     addToCart,
     displayCart,
     deleteFromCart,
+    LoginUser,
+    createUser,
+    currentUser,
+    LogOut,
   };
   return (
     <contextProvider.Provider value={contextValue}>

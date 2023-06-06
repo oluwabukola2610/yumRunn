@@ -6,7 +6,7 @@ const FoodHero = () => {
  const [userInfo, setUserInfo] = useState(null);
 
  useEffect(() => {
-   const storedUserInfo = localStorage.getItem("user");
+   const storedUserInfo = sessionStorage.getItem("user");
    if (storedUserInfo) {
      setUserInfo(JSON.parse(storedUserInfo));
    }

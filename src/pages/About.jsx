@@ -1,6 +1,5 @@
 import React from "react";
 import HeroFooter from "../component/HeroFooter";
-import Footer from "../component/Footer";
 import Navbar from "../component/Navbar";
 
 const About = () => {

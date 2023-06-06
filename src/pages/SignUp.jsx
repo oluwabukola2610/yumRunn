@@ -1,18 +1,50 @@
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { Link,  } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useRegister from "../hook/useRegister";
+import { useContext } from "react";
+import { contextProvider } from "../context/FoodContext";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
-  const {handleSubmit,handleInputChange,togglePassword,passwordType,user} = useRegister("Register succesful!")
+  const { handleInputChange, togglePassword, passwordType, user } =
+    useRegister();
+  const { createUser } = useContext(contextProvider);
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Perform form validation
+    if (!user.email.trim() || !user.password.trim() || !user.name.trim()) {
+      toast.error("Please fill in all the fields.");
+      return;
+    }
 
+    if (user.password.length < 6) {
+      toast.error("Password should be at least 6 characters!");
+      return;
+    }
 
+    try {
+      await createUser(user.email, user.password);
+      navigate("/food");
+      sessionStorage.setItem("user", JSON.stringify(user));
+    } catch (err) {
+      if (err.code === "auth/email-already-in-use") {
+        toast.error("Email already exists");
+      } else {
+        toast.error(err.message);
+      }
+    }
+
+    sessionStorage.setItem("user", JSON.stringify(user));
+  };
   return (
     <section className="mx-auto max-w-[1640px]">
       <ToastContainer
         position="top-center"
         hideProgressBar={true}
         newestOnTop={false}
+        autoClose={3000}
         closeOnClick
         rtl={false}
         draggable
@@ -20,7 +52,7 @@ const SignUp = () => {
       />
       <div className="max-h-[600px] relative ">
         <div className="w-full h-[100vh] px-3 sm:px-5 flex items-center justify-center absolute bg-black/50">
-        <div className="absolute left-5 top-6 md:left-20 md:top-10 ">
+          <div className="absolute left-5 top-6 md:left-20 md:top-10 ">
             <Link to="/" className="logo">
               <h1 className="text-3xl md:text-4xl font-semibold font-logo !text-deeperO">
                 yumRun
@@ -34,7 +66,7 @@ const SignUp = () => {
             <form
               onSubmit={handleSubmit}
               className="w-full sm:max-w-md px-6 space-y-4 md:space-y-6 bg-gray-400 bg-opacity-30 bg-clip-padding backdrop-filter backdrop-blur-sm text-white z-50 py-4  rounded-lg"
-              >
+            >
               <h1 className="w-full flex justify-center text-white font-bold text-bold text-2xl mb:2 md:mb-5">
                 Sign up to your account
               </h1>
@@ -53,7 +85,6 @@ const SignUp = () => {
                   className=" block w-full p-1.5 md:p-2.5 bg-gray-300 rounded-lg  placeholder-gray-600 text-gray-900 focus:outline-none "
                   placeholder="marty may"
                   onChange={handleInputChange}
-                  required={true}
                 />
               </div>
               <div className="mb-6">
@@ -70,7 +101,6 @@ const SignUp = () => {
                   className="block w-full p-1.5 md:p-2.5 bg-gray-300 rounded-lg placeholder-gray-600 text-gray-900 focus:outline-none "
                   placeholder="name@company.com"
                   onChange={handleInputChange}
-                  required={true}
                 />
               </div>
               <div className="mb-6">
@@ -87,7 +117,6 @@ const SignUp = () => {
                     name="password"
                     value={user.password}
                     id="password"
-                    required={true}
                     placeholder="••••••••"
                     className="block w-full p-1.5 md:p-2.5 bg-gray-300 rounded-lg placeholder-gray-600 text-gray-900 focus:outline-none "
                   />
@@ -111,7 +140,7 @@ const SignUp = () => {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label for="remember" className="text-gray-300">
+                    <label htmlFor="remember" className="text-gray-300">
                       Remember me
                     </label>
                   </div>
